@@ -1,3 +1,5 @@
+import sys
+
 
 clients = 'pablo,ricardo,'
 
@@ -18,7 +20,7 @@ def list_clients():
 	print(clients)
 
 
-def update_client(client_name, udpated_client_name):
+def update_client(client_name, updated_client_name):
 	global clients
 
 	if client_name in clients:
@@ -64,7 +66,19 @@ def _print_welcome():
 
 
 def _get_client_name():
-	return input('What is the client name? ')
+	client_name = None
+
+	while not client_name:
+		client_name = input('What is the client name? ')
+
+		if client_name == 'exit':
+			client_name = None
+			break
+
+	if not client_name:
+		sys.exit()
+
+	return client_name
 
 
 if __name__ == '__main__':
